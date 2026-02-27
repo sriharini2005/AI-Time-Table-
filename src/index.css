@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Default: Vibrant Theme */
+  --primary: 260, 100%, 75%;
+  --secondary: 15, 100%, 70%;
+  --accent: 180, 80%, 60%;
+  --bg-gradient: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  --text-main: white;
+  --font-main: 'Outfit', system-ui, sans-serif;
+  line-height: 1.5;
+  color-scheme: dark;
+}
+
+[data-theme="lofi"] {
+  /* Lofi / Study Theme: Warm, Cozy, Cafe vibes */
+  --primary: 28, 60%, 55%;
+  /* Warm Brown */
+  --secondary: 350, 40%, 60%;
+  /* Muted Rose */
+  --accent: 45, 50%, 60%;
+  /* Soft Gold */
+  --bg-gradient: linear-gradient(to bottom right, #2c2420, #463434);
+  --glass-bg: rgba(255, 235, 205, 0.05);
+  /* Sepia tint */
+  --glass-border: rgba(255, 235, 205, 0.1);
+  --text-main: #f0e6d2;
+  /* Cream text */
+  --font-main: 'Courier New', monospace;
+  /* Typewriter feel */
+}
+
+[data-theme="dark"] {
+  /* Ultra Dark / Focus Mode */
+  --primary: 210, 100%, 50%;
+  /* Electric Blue */
+  --secondary: 280, 80%, 60%;
+  /* Neon Purple */
+  --accent: 150, 100%, 50%;
+  /* Green */
+  --bg-gradient: black;
+  --glass-bg: rgba(10, 10, 10, 0.8);
+  --glass-border: rgba(50, 50, 50, 0.5);
+  --text-main: #e0e0e0;
+  --font-main: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* Fun, colorful mesh gradient */
+  background: var(--bg-gradient);
+  background-color: #1a1a2e;
+  overflow-x: hidden;
+  font-family: var(--font-main);
+  color: var(--text-main);
+  transition: background 0.5s ease;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.5;
+  animation: float 15s infinite alternate ease-in-out;
+}
+
+body::before {
+  background: radial-gradient(circle, #ff6b6b, #ff8e53);
+  top: -10%;
+  left: -10%;
+}
+
+body::after {
+  background: radial-gradient(circle, #4ecdc4, #556270);
+  bottom: -10%;
+  right: -10%;
+  animation-delay: -7s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(40px, 40px) rotate(10deg);
+  }
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: var(--glass-bg);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  transition: transform 0.3s ease;
+}
+
+.glass:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+  color: var(--text-main);
+  margin: 0 0 1rem 0;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  /* Pastel Rainbow Gradient Text */
+  background: linear-gradient(to right, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2rem;
+  text-align: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Button Styles - More bubbly */
+button {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  /* Pill shape */
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Bouncy */
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: none;
+}
+
+button.secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Input Styles */
+input,
+select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  padding: 14px;
+  border-radius: 16px;
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #4ecdc4;
+  transform: translateY(-2px);
+}
+
+/* Utilities */
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
